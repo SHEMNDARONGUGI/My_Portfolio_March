@@ -7,7 +7,11 @@ exports.createBlog = async (req, res) => {
 };
 
 //Get /api/blogs/me
-exports.getMyBlogss = async (req, res) => {
-  const tasks = (await Blog.find({ isPublished: true })).sort({ date: -1 });
-  res.json(tasks);
+exports.getPublishedBlogs = async (req, res) => {
+  try {
+    const blogs = await Blog.find({ isPublished: true }).sort({ date: -1 });
+    res.json(blogs);
+  } catch (err) {
+    res.status(500).json({ message: "Server error" });
+  }
 };

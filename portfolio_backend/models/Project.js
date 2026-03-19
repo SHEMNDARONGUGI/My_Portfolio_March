@@ -9,6 +9,11 @@ const projectSchema = new mongoose.Schema(
     tags: [{ type: String, trim: true }],
     projectGithubURL: { type: String },
     projectURL: { type: String },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true },
 );

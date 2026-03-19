@@ -18,10 +18,10 @@ const skillSchema = new mongoose.Schema(
         "IT Helpdesk",
         "Others",
       ],
-      default: "Other",
+      default: "Others",
     },
 
-    proficiency: { type: Number, min: 1, max: 10 },
+    proficiency: { type: Number, min: 1, max: 10, default: 5 },
   },
   { timestamps: true },
 );
