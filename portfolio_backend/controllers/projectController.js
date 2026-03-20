@@ -17,7 +17,15 @@ exports.createProject = async (req, res) => {
 exports.getProjects = async (req, res) => {
   try {
     const projects = await Project.find().sort({ startDate: -1 });
-    res.json(projects);
+    if (!projects || projects.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No project records found",
+      });
+    }
+    res
+      .status(200)
+      .json({ success: true, count: projects.length, projects: projects });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }

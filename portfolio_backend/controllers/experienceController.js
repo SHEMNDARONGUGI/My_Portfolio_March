@@ -12,7 +12,7 @@ exports.createExperience = async (req, res) => {
     });
     res.status(201).json(experience);
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -23,10 +23,25 @@ exports.getExperiences = async (req, res) => {
     //using .populate("skills") replaces with actual skill rather than the IDS
     const experiences = await Experience.find()
       .sort({ startDate: -1 })
-      .populate("skills");
-    res.json(experiences);
+      .populate("skills", "title")
+      .lean();
+
+    if (!experiences || experiences.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No experience records found",
+      });
+    }
+
+    res
+      .status(200)
+      .json({
+        success: true,
+        count: experiences.length,
+        experiences: experiences,
+      });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -52,7 +67,7 @@ exports.updateExperience = async (req, res) => {
 
     res.status(200).json(updatedExperience);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -75,6 +90,6 @@ exports.deleteExperience = async (req, res) => {
     res.status(200).json({ message: "Experience deleted successfully" });
   } catch (error) {
     //bad request
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };

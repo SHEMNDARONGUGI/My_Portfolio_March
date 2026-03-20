@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const skillSchema = new mongoose.Schema(
   {
     // to show skill icon
-    icon: { type: String },
+    icon: { type: String, default: "none" },
 
     title: { type: String, required: true, unique: true },
 
