@@ -22,7 +22,7 @@ app.use("/experience", require("./routes/experienceRoutes"));
 app.use("/projects", require("./routes/projectRoutes"));
 app.use("/services", require("./routes/serviceRoutes"));
 app.use("/skills", require("./routes/skillRoutes"));
-
+app.use("/upload", require("./routes/uploadRoutes"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const PORT = process.env.PORT;

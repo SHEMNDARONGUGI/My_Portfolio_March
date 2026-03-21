@@ -585,3 +585,50 @@ paths:
       responses:
         200:
           description: Deleted
+
+  /upload:
+    post:
+      tags: [Uploads]
+      summary: Upload an image to Cloudinary
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+      responses:
+        200:
+          description: Image uploaded successfully
+          content:
+            application/json:
+              example:
+                success: true
+                url: https://res.cloudinary.com/demo/image/upload/sample.jpg
+        400:
+          description: Bad request (invalid file)
+          content:
+            application/json:
+              example:
+                success: false
+                message: Invalid file type
+        401:
+          description: Unauthorized (JWT missing or invalid)
+          content:
+            application/json:
+              example:
+                success: false
+                message: Unauthorized
+        500:
+          description: Server error
+          content:
+            application/json:
+              example:
+                success: false
+                message: Upload failed
