@@ -14,7 +14,9 @@ exports.addEducation = async (req, res) => {
       completed,
       startDate,
       endDate,
+
       skills,
+      order,
     } = req.body;
 
     if (!institutionName || !courseTitle) {
@@ -30,6 +32,7 @@ exports.addEducation = async (req, res) => {
       completed,
       startDate,
       endDate,
+      order,
       skills,
       owner: req.user.id,
     });

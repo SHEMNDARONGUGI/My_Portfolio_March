@@ -3,11 +3,26 @@ const Certification = require("../models/Certification");
 // POST api/certifications
 exports.createCertification = async (req, res) => {
   try {
+    const {
+      institutionName,
+      certificateName,
+      certificateImage,
+      certificateURL,
+      skills,
+      issueDate,
+      expiryDate,
+    } = req.body;
     if (req.user.role !== "admin") {
       return res.status(403).json({ message: "Not authorized. Admins only" });
     }
     const certification = await Certification.create({
-      ...req.body,
+      institutionName,
+      certificateName,
+      certificateImage,
+      certificateURL,
+      skills,
+      issueDate,
+      expiryDate,
       owner: req.user.id,
     });
     res.status(201).json(certification);
@@ -29,7 +44,6 @@ exports.getCertification = async (req, res) => {
         success: false,
         message: "No certificaton records found",
       });
-      
     }
     res.status(200).json(certificates);
   } catch (error) {

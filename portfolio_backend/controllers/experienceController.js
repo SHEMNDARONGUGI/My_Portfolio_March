@@ -3,11 +3,18 @@ const Experience = require("../models/Experience");
 // POST api/experiences
 exports.createExperience = async (req, res) => {
   try {
+    const { companyName, role, description, skills, startDate, endDate } =
+      req.body;
     if (req.user.role !== "admin") {
       return res.status(403).json({ message: "Not authorized. Admins only" });
     }
     const experience = await Experience.create({
-      ...req.body,
+      companyName,
+      role,
+      description,
+      skills,
+      startDate,
+      endDate,
       owner: req.user.id,
     });
     res.status(201).json(experience);
@@ -33,13 +40,11 @@ exports.getExperiences = async (req, res) => {
       });
     }
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        count: experiences.length,
-        experiences: experiences,
-      });
+    res.status(200).json({
+      success: true,
+      count: experiences.length,
+      experiences: experiences,
+    });
   } catch (error) {
     return res.status(500).json({ message: "Server error" });
   }

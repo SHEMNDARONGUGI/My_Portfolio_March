@@ -3,10 +3,28 @@ const Project = require("../models/Project");
 // POST api/projects
 exports.createProject = async (req, res) => {
   try {
+    const {
+      projectTitle,
+      projectImage,
+      projectDescription,
+      projectStack,
+      tags,
+      projectGithubURL,
+      projectURL,
+    } = req.body;
     if (req.user.role !== "admin") {
       return res.status(403).json({ message: "Not authorized. Admins only" });
     }
-    const project = await Project.create({ ...req.body, owner: req.user.id });
+    const project = await Project.create({
+      projectTitle,
+      projectImage,
+      projectDescription,
+      projectStack,
+      tags,
+      projectGithubURL,
+      projectURL,
+      owner: req.user.id,
+    });
     res.status(201).json(project);
   } catch (error) {
     res.status(500).json({ message: "Server error" });

@@ -21,6 +21,11 @@ const educationSchema = new mongoose.Schema(
 
     //helps to control how things appear on my website
     order: { type: Number, default: 0 },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   //
   { timestamps: true },

@@ -4,11 +4,19 @@ const Service = require("../models/Service");
 
 exports.createService = async (req, res) => {
   try {
+    const { serviceTitle, serviceImage, serviceDescription, tags } = req.body;
     if (req.user.role !== "admin")
       return res.status(403).json({
         message: "Not authorized, only admin can create a new service",
       });
-    const service = await Service.create({ ...req.body, owner: req.user.id });
+
+    const service = await Service.create({
+      serviceTitle,
+      serviceImage,
+      serviceDescription,
+      tags,
+      owner: req.user.id,
+    });
     res.status(201).json(service);
   } catch (error) {
     return res.status(500).json({ message: "Server error" });

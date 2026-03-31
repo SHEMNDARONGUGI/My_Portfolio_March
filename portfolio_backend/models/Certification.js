@@ -18,6 +18,11 @@ const certificationSchema = new mongoose.Schema(
     ],
     issueDate: { type: Date },
     expiryDate: { type: Date, default: null },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   {
     timestamps: true,

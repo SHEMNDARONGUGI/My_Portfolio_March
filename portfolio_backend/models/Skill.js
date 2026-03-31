@@ -22,6 +22,11 @@ const skillSchema = new mongoose.Schema(
     },
 
     proficiency: { type: Number, min: 1, max: 10, default: 5 },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true },
 );
