@@ -12,16 +12,16 @@ import { Menu } from "lucide-react";
 export default function Navbar() {
   return (
     <header fixed top-0 w-full z-50>
-      <div className="p-6 flex justify-between bg-blue-900">
-        <h1 className="text-white font-semibold tracking-wide text-lg">
+      <div className="p-6 flex justify-between bg-black/80">
+        <h1 className="text-white font-semibold tracking-wide text-3xl">
           Shem Ndaro Ngugi
         </h1>
-        <NavigationMenu className="text-white hidden md:flex">
+        <NavigationMenu className="text-white hidden md:flex" viewport={false}>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="#"
-                className="hover:bg-yellow-500 hover:text-blue-900"
+                className="hover:bg-transparent hover:text-yellow-500"
               >
                 Home
               </NavigationMenuLink>
@@ -30,7 +30,7 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="#"
-                className="hover:bg-yellow-500 hover:text-blue-900"
+                className="hover:bg-transparent hover:text-yellow-500"
               >
                 Experience
               </NavigationMenuLink>
@@ -39,7 +39,7 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="#"
-                className="hover:bg-yellow-500 hover:text-blue-900"
+                className="hover:bg-transparent hover:text-yellow-500"
               >
                 Education
               </NavigationMenuLink>
@@ -48,7 +48,7 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="#"
-                className="hover:bg-yellow-500 hover:text-blue-900"
+                className="hover:bg-transparent hover:text-yellow-500"
               >
                 Projects
               </NavigationMenuLink>
@@ -57,19 +57,29 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="#"
-                className="hover:bg-yellow-500 hover:text-blue-900"
+                className="hover:bg-transparent hover:text-yellow-500"
               >
                 Contact
               </NavigationMenuLink>
             </NavigationMenuItem>
 
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="hover:bg-yellow-500 hover:text-blue-900">
+            <NavigationMenuItem className="bg-transparent">
+              <NavigationMenuTrigger className=" hover:text-black hover:bg-transparent">
                 Account
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <NavigationMenuLink href="#">Login</NavigationMenuLink>
-                <NavigationMenuLink href="#">Register</NavigationMenuLink>
+                <NavigationMenuLink
+                  href="#"
+                  className="hover:bg-transparent hover:text-yellow-500"
+                >
+                  Login
+                </NavigationMenuLink>
+                <NavigationMenuLink
+                  href="#"
+                  className="hover:bg-transparent hover:text-yellow-500"
+                >
+                  Register
+                </NavigationMenuLink>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
