@@ -12,7 +12,6 @@ exports.createContact = async (req, res) => {
       phoneNumber,
       subject,
       description,
-      owner: req.user.id,
     });
     res.status(201).json({
       success: true,
@@ -37,7 +36,7 @@ exports.getContact = async (req, res) => {
     const contacts = await Contact.find();
     res
       .status(200)
-      .res.json({ success: true, count: contacts.length, contact: contacts });
+      .json({ success: true, count: contacts.length, contact: contacts });
   } catch (error) {
     return res.status(500).json({ message: "Server error" });
   }

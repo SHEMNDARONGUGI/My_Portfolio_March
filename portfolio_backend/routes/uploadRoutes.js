@@ -7,6 +7,6 @@ const { uploadImage } = require("../controllers/uploadController");
 // POST /upload
 router.use(protect);
 router.use(authorize(["admin"]));
-router.post("/upload", upload.single("image"), uploadImage);
+router.post("/", upload.single("image"), uploadImage);
 
 module.exports = router;
